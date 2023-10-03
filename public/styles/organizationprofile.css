@@ -1,0 +1,41 @@
+.avatar{
+    width: 200px;
+    height: 200px;
+    
+}
+
+.card{
+    width: 900px;
+    height: 700px;
+    float: left;
+
+
+}
+
+#map{
+    width: 200px;
+    height: 200px;
+    float: right;
+
+}
+
+.fa {  
+    padding: 20px;  
+  text-align: center;  
+    margin: 5px 2px;  
+    font-size: 30px;  
+    width: 50px;  
+  }  
+  .fa-facebook {  
+    background: #3B5998;  
+    color: white;  
+  }  
+  .fa-twitter {  
+    background: #55ACEE;  
+    color: white;  
+  }  
+
+  .fa-instagram {  
+    background: #125688;  
+    color: white;  
+  }  

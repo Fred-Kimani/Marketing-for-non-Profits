@@ -1,0 +1,38 @@
+<% if(users !=''){ %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Date Added</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%users.forEach((row,index) =>{%>
+
+    <tr>
+      <td>
+        <img src="<%=row.image %>" width="50" class="img-thumbnail" />
+      </td>
+      <td><%=row.f_name %></td>
+      <td><%=row.l_name %></td>
+      <td><%=row.email %></td>
+      <td><%=row.date %></td>
+      <td>
+        <a href="/edit/<%=row._id %>" class="text-success"
+          ><i class="fas fa-edit fa-lg mx-1"></i
+        ></a>
+        <a href="/delete/<%=row._id %>" class="text-error"
+          ><i class="fas fa-trash fa-lg mx-1"></i
+        ></a>
+      </td>
+    </tr>
+    <%})%>
+  </tbody>
+</table>
+<a href="/admin">Go back to home page</a>
+<% }else{ %>
+<h1 class="text-center text-secondary mt-5">No users found!</h1>
+<% } %>

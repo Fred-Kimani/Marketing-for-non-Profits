@@ -1,0 +1,47 @@
+<% if(organizations !=''){ %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Profile image</th>
+          <th>Organization name</th>
+          <th>Email</th>
+          <th>Category</th>
+          <th>Date added</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%organizations.forEach((row,index) =>{%>
+    
+        <tr>
+          <td>
+            <img src="<%=row.image %>" width="50" class="img-thumbnail">
+
+          </td>
+
+          <td><%=row.organization_name %></td>
+          <td><%=row.email %></td>
+          <td><%=row.category%></td>
+          <td><%=row.date %></td>
+          <td>
+
+            <a id = 'approve' href="/disapprove/<%=row._id %>" class="btn btn-secondary">Disapprove 
+            </a>
+
+            <a href="/edit_organization/<%=row._id %>" class="text-success"
+              ><i class="fas fa-edit fa-lg mx-1"></i
+            ></a>
+
+            <a href="/delete_organization/<%=row._id %>" class="text-error"
+              ><i class="fas fa-trash fa-lg mx-1"></i
+            ></a>
+
+          </td>
+        </tr>
+        <%})%>
+      </tbody>
+    </table>
+    <a href="/admin">Go back to home page</a>
+    <% }else{ %>
+    <h1 class="text-center text-secondary mt-5">No organization found!</h1>
+    <% } %>
+    

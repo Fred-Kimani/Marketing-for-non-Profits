@@ -1,0 +1,20 @@
+<div>
+  <h1>User profile page</h1>
+
+  <div class="card">
+      <div>
+      <img src="/<%=user.image %>" class= "avatar" style="width:100" style="height:100">
+  </div>
+      <div class="cardText">
+        <h2> <%=user.f_name + " " +user.l_name%></h2>
+        <p> First name: <%=user.f_name%></p>
+        <p> Last name : <%=user.l_name%></p>
+        <p> Email: <%=user.email%></p>
+     </div>
+    </div>
+
+    <a href="/editprofile/<%=user.id%>"> Edit Details</a>
+    <a href="/dashboard">Home page</a>
+
+
+</div>

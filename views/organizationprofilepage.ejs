@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="../public/styles/organizationprofile.css">
+
+<div>
+
+    <div class="card">
+        <div>
+        <img src="/<%=organization.image %>" class= "avatar"  enctype="multipart/form-data">
+    </div>
+        <div class="cardText">
+        <h1><%=organization.organization_name %></h1>
+        <h2><%=organization.email%></h2>
+        <h2><%=organization.category %></h2>
+        <p><%=organization.description %></p>
+       </div>
+
+       <a href="#" class="fa fa-facebook"></a>  
+       <a href="#" class="fa fa-twitter"></a>  
+      
+      </div>
+
+      <form
+        action="/comment/<%=organization._id%>"
+        method="POST"
+        id="comment-form"
+      >
+      <div class="form-group">
+        <label for="commentBody">Leave comment</label>
+        <input
+          type="commentBody"
+          id="commentBody"
+          name="commentBody"
+          class="form-control"
+          placeholder="Leave comment"
+          value=""
+        />
+      </div>
+      <button type="add-comment" class="btn btn-primary btn-block">
+        Leave Comment
+      </button>
+    </form>
+
+    <% if(comments !=''){ %>
+
+        <div id="comments-container">
+            <%comments.forEach((comment) =>{%>
+    
+                <h2><%=comment.sender%></h2>
+                <p><%=comment.commentBody%></p>
+                <%})%>
+        </div>
+        <% }else{ %>
+            <h1 class="text-center text-secondary mt-5">No comments yet!</h1>
+            <% } %>
+    
+
+    </div>
+
+    
+
+</div>
+

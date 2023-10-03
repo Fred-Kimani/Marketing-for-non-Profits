@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="../public/styles/organizationprofile.css">
+<h1>Organization profile page</h1>
+<%- include ("./partials/messages") %>
+
+<div>
+
+  <div class="card">
+      <div>
+      <img src="/<%=organization.image %>" class= "avatar"  enctype="multipart/form-data" style="width:100">
+  </div>
+      <div class="cardText">
+      <h1><%=organization.organization_name %></h1>
+      <h2><%=organization.email%></h2>
+      <p><%=organization.category %></p>
+      <p><%=organization.description %></p>
+     </div>
+    </div>
+
+    <div id="map">
+
+    </div>
+
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ92XBmi-dAupKnEGC1GD39QutUWnCZeg&callback=initMap"></script>
+    
+
+
+
+</div>
+
+<a href="/editorganizationprofile/<%=organization.id%>"> Edit profile Details</a>
+<a href="/organization_dashboard">Home page</a>

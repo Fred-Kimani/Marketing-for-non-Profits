@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="../public/styles/dashboard.css" type="text/css">
+<header id="header">
+  <div id="topnav">
+    <a class="home" href="/dashboard">Home</a></li>
+    <a id="children" href="/child_care">Child Care</a>
+    <a id="elderly" href="/organizations/elderlycare">Elderly Care</a>
+    <a id="health" href="/organizations/healthcare">Health Care</a>
+    <a id="disabled" href="/organization/disablitycare">Disabled</a>
+    <a id="relief" href="/organizations/relief">Relief</a>
+    <a id="others" href="/organizations/other">Others</a>
+    <a id="logout" href="/logout" class="btn btn-secondary">Logout</a>
+  </div>
+</header>
+<h1> Child care organizations</h1>
+
+<body>
+
+    <div id="profile-cards-container">
+
+      <%childOrganizations.forEach((organization) =>{%>
+    
+        <div class="card">
+          <img src="<%=organization.image %>" style="width:100">
+          <div class="cardText">
+          <h2><%=organization.organization_name %></h2>
+          <h3><%=organization.email %></h3>
+          <h3><%=organization.category %></h3>
+          <div>
+            <p id="description"><%=organization.description%></p>
+          </div>
+          <p><a id="profile" href="/organizationprofilepage/<%=organization._id%>" class="btn btn-secondary">Learn more</a></p>
+         </div>
+        </div>
+    
+        <%})%>
+    
+    </div>
+    </body>
+    
+    
+    </div>
+    </body>

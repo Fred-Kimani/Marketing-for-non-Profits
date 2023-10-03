@@ -1,0 +1,31 @@
+
+module.exports = {
+  ensureAuthenticated: function (req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    req.flash("error_msg", "Please log in to view that resource");
+    res.redirect("/login");
+  },
+  forwardAuthenticated: function (req, res, next) {
+    if (!req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect("/dashboard");
+  },
+
+  ensureAuthenticated2: function (req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    req.flash("error_msg", "Please log in to view that resource");
+    res.redirect("/organization_login");
+  },
+  forwardAuthenticated2: function (req, res, next) {
+    if (!req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect("/organization_dashboard");
+  },
+ 
+};
