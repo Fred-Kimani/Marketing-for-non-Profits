@@ -1,4 +1,4 @@
-const organizationList = document.getElementById('profile-cards-container')
+/*const organizationList = document.getElementById('profile-cards-container')
 const searchBar = document.getElementById('searchBar')
 console.log(searchBar)
 searchBar.addEventListener('keyup', (e) => {
@@ -26,5 +26,5 @@ const displayOrganizations = (organizations) => {
     `
   })
 
-}
+}*/
    

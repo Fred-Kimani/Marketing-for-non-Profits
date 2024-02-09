@@ -1,4 +1,4 @@
-<h3 class="lead mb-3">Welcome, <%= user.f_name %> <%=user.l_name%></h3>
+<h3 class="lead mb-3">Welcome</h3>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="../public/scripts/dashboard.js"></script>
 <link rel="stylesheet" href="../public/styles/dashboard.css" type="text/css">
@@ -6,14 +6,13 @@
 
 <header id="header">
   <div id="topnav">
-          <a class="home" href="/dashboard">Home</a></li>
+          <a class="home" href="/">Home</a></li>
           <a id="children" href="/child_care">Child Care</a>
           <a id="elderly" href="/organizations/elderlycare">Elderly Care</a>
           <a id="health" href="/organizations/healthcare">Health Care</a>
           <a id="disabled" href="/organizations/disablitycare">Disabled</a>
           <a id="relief" href="/organizations/relief">Relief</a>
           <a id="others" href="/organizations/other">Others</a>
-          <a id="profile" href="/viewprofile/<%=user._id%>" class="btn btn-secondary">Profile</a>
           <a id="logout" href="/logout" class="btn btn-secondary">Logout</a>
   </div>
 </header>
@@ -37,19 +36,27 @@
 
 <body>
 
+  <div class="intro">
+    This platform helps donors, volunteers and any other person seeking to help
+    Non-profit Organizations in one way or another, connect and hence find these 
+    organizations. This platform is intended to be used only for the above reason
+    so that it is easier and people interested can easily do so without saturation
+    of non-related content.
+    <a href="/info">learn more.</a>
+  </div>
+
 <div id="profile-cards-container">
 
   <%organizations.forEach((organization) =>{%>
 
     <div class="card">
-      <img src="<%=organization.image %>" style="width:100" class="avatar">
+      <img src="<%=organization.image %>" style="width:20%" class="avatar">
       <div class="cardText">
       <h2><%=organization.organization_name %></h2>
       <h3><%=organization.email %></h3>
       <h3><%=organization.category %></h3>
-      <div>
-        <p id="description"><%=organization.description%></p>
-      </div>
+      <p id="description"><%=organization.description%></p>
+      
       <p><a id="profile" href="/organizationprofilepage/<%=organization._id%>" class="btn btn-secondary">Learn more</a></p>
      </div>
     </div>

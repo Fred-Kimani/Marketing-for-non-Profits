@@ -7,10 +7,37 @@
 .card{
     width: 900px;
     height: 700px;
-    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+    
 
 
 }
+
+.main-profile-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(127, 208, 255);
+    width: 100%;
+
+}
+
+.cardText{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+
+}
+
+.comments-container{
+  padding: 1%;
+  margin: 2%;
+} 
 
 #map{
     width: 200px;
@@ -19,23 +46,24 @@
 
 }
 
-.fa {  
-    padding: 20px;  
-  text-align: center;  
-    margin: 5px 2px;  
-    font-size: 30px;  
-    width: 50px;  
-  }  
-  .fa-facebook {  
-    background: #3B5998;  
-    color: white;  
-  }  
-  .fa-twitter {  
-    background: #55ACEE;  
-    color: white;  
-  }  
+textarea {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
 
-  .fa-instagram {  
-    background: #125688;  
-    color: white;  
-  }  
+form{
+  width: 50%;
+}
+
+
+.about-this-site{
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  margin: 2%;
+
+}

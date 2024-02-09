@@ -41,23 +41,48 @@ var upload2 = multer({
   storage: storage2,
 }).single("image");
 
-router.post('/comment/:id', ensureAuthenticated, async(req,res) =>{
+router.get('/organizationprofilepage/:id', async(req, res) => {
+  
+  try{
+
+    let id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).send('Invalid ObjectId format');
+    }
+    const organization = await Organization.findOne({_id: mongoose.Types.ObjectId(id)}).exec();
+    const comments = await Comment.find({receiver: id }).exec();
+
+    res.render('organizationprofilepage', {
+      organization: organization,
+      comments: comments,
+      user: req.user
+    })
+  } catch(err){
+    console.log(err);
+  }
+});
+
+router.post('/comment', ensureAuthenticated, async(req,res) =>{
   try{
 
     let user = req.user;
-  const commentObject = await new Comment({
+    const organizationId = req.body.organizationId;
+    const commentObject = await new Comment({
     sender: user.f_name+" "+user.l_name,
     commentBody: req.body.commentBody,
-    receiver: req.params.id, 
+    receiver: organizationId, 
   })
-  console.log(commentObject);
-  commentObject.save((err, result) => {
-    console.log(result)
-    res.redirect('/dashboard') 
-  });
+  await commentObject.save();
   }catch(err){
-    console.log(err)}
+    console.log(err)
+    res.status(500).json({ error: 'An error occurred on our side while saving the comment.' });
+
+  }
 });
+
+router.get('/info', (req, res)=>{
+  res.render('info')
+})
 
 router.post('/reply/:id', ensureAuthenticated2)
 
@@ -400,7 +425,7 @@ router.post("/login", (req, res, next) => {
     req.logIn(user, (err) => {
       if (err) return next(err);
       if (user.roles === "admin") return res.redirect("/admin");
-      return res.redirect("/dashboard");
+      return res.redirect("/");
     });
   })(req, res, next);
 });
@@ -435,12 +460,11 @@ router.get("/organization_logout", (req, res) => {
   res.redirect("/organization_login");
 });
 
-// Welcome Page
-router.get("/", forwardAuthenticated, (req, res) => res.render("welcome"));
+
 
 // Dashboard
 
-router.get("/dashboard", ensureAuthenticated, async(req, res) => {
+router.get("/",  async(req, res) => {
   try{
     const organizations = await Organization.find({isApproved : true})
     res.render('dashboard', 
@@ -497,32 +521,14 @@ router.get("/viewprofile/:id", (req, res) => {
   User.findById(id, (err, user) => {
     if (err) {
       console.log(err);
-      return res.redirect("/dashboard");
+      return res.redirect("/");
     }
     res.render("profile", { user: user });
     console.log(user);
   });
 });
 
-router.get('/organizationprofilepage/:id', ensureAuthenticated, async(req, res) => {
-  
-  try{
 
-    let id = req.params.id;
-    let fixedId= id.replace(/\s/g,'');
-    const organization = await Organization.findOne({_id: fixedId}).exec();
-    const comments = await Comment.find({receiver: fixedId }).exec();
-    console.log(comments)
-
-    res.render('organizationprofilepage', {
-      organization: organization,
-      comments: comments,
-      user: req.user
-    })
-  } catch(err){
-    console.log(err);
-  }
-});
 
 router.get("/organizationprofile/:id", async(req, res) => {
 
@@ -542,10 +548,10 @@ router.get("/editprofile/:id", (req, res) => {
   //finding the specific user on the User model
   User.findById(id, (err, user) => {
     if (err) {
-      res.redirect("/dashboard");
+      res.redirect("/");
     } else {
       if (user == null) {
-        res.redirect("/dashboard");
+        res.redirect("/");
       } else {
         res.render("editdetails", {
           title: "Edit profile details",

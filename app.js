@@ -5,11 +5,6 @@ const passport = require("passport");
 const flash = require("connect-flash");
 const session = require("express-session");
 const app = express();
-/**var otherRoutes = require('./routes/other');
-var elderRoutes = require('./routes/elderly_care');
-var healthRoutes = require('./routes/health_care');
-var reliefRoutes = require('./routes/relief');
-var disabledRoutes = require('./routes/disabled');*/
 var filterRoutes = require('./routes/filter');
 var falseRoutes = require('./routes/approvals');
 
@@ -64,15 +59,9 @@ app.use(function (req, res, next) {
   next();
 });
 
-// Routes
-//app.use("/users", require("./routes/users.js"));
+
 app.use("/", require("./routes/index.js"));
 
-/**app.use('/elderly_care', elderRoutes);
-app.use('/health_care', healthRoutes);
-app.use('/relief', reliefRoutes);
-app.use('/other', otherRoutes);
-app.use('/disabled', disabledRoutes);*/
 
 app.use('/approvals', falseRoutes)
 app.use('/organizations', filterRoutes)
